@@ -1,7 +1,4 @@
-/* Token Radar — dark sweep theme. Deep green-black canvas, radar teal
-   as the signal colour, amber for the top of the board, red for falls.
-   No external assets: every mark is drawn with borders and gradients. */
-:root{
+/* Token Radar — dark sweep theme. No external assets: every mark is drawn with borders and gradients. */:root{
   --canvas:#060b09;
   --canvas-2:#0a120e;
   --panel:#0e1a15;
@@ -131,32 +128,85 @@ tr.top3 .track i{background:linear-gradient(90deg,#8a6a1d,var(--amber))}
 .note{border-left:3px solid var(--amber);padding:4px 0 4px 14px;color:var(--muted)}
 .note b{color:var(--amber)}
 
+/* ---- portfolio builder ---- */
+.portfolio{margin-top:16px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden}
+.portfolio summary{list-style:none;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;padding:14px 18px;cursor:pointer}
+.portfolio summary::-webkit-details-marker{display:none}
+.pf-title{font-weight:700;font-size:16px}
+.pf-title::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--signal);box-shadow:0 0 8px var(--signal);margin-right:9px}
+.pf-sum{font-family:var(--num);font-size:13px;color:var(--muted)}
+.pf-sum b{color:var(--signal)}
+.pf-body{padding:0 18px 18px;display:grid;gap:12px;border-top:1px solid var(--line-soft)}
+.pf-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding-top:14px}
+.pf-note{color:var(--muted);font-size:13px;max-width:78ch}
+.pf-actions{display:flex;gap:10px;flex-wrap:wrap}
+.pf-list{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.pf-list li{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);border:1px solid var(--line-soft);border-radius:8px;padding:7px 10px}
+.pf-list li b{color:var(--ink)}
+.pf-x{flex:none;width:24px;height:24px;border:1px solid var(--line);border-radius:6px;background:var(--canvas-2);color:var(--muted);font-size:14px;line-height:1}
+.pf-x:hover{color:var(--red);border-color:var(--red)}
+.pf-empty{color:var(--muted);font-size:13px}
+
+/* ---- risk + readiness pills ---- */
+.tier{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.03em}
+.tier.low{color:#2ee6a8;background:rgba(46,230,168,.12)}
+.tier.mod{color:#f5b942;background:rgba(245,185,66,.12)}
+.tier.high{color:#ff9a5e;background:rgba(255,154,94,.12)}
+.tier.vhigh{color:#ff6b5e;background:rgba(255,107,94,.14)}
+.risk-score{font-weight:600}
+.ready{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.ready.ready{color:#2ee6a8;background:rgba(46,230,168,.12)}
+.ready.watching{color:#f5b942;background:rgba(245,185,66,.12)}
+.ready.early{color:#93a89d;background:rgba(147,168,157,.14)}
+.pick input{width:17px;height:17px;accent-color:var(--signal);cursor:pointer}
+.btn.top50{min-height:40px;padding:0 16px}
+.btn.top50[aria-pressed="true"]{background:var(--signal);border-color:var(--signal);color:#04120c}
+
+/* ---- live market panel ---- */
+.live-panel{margin-top:16px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px;display:grid;gap:14px}
+.live-panel h2{display:flex;align-items:center;gap:10px}
+.live-panel h2::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber)}
+.live-panel>p{color:var(--muted);max-width:78ch}
+.live-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.board.mini{margin-top:0}
+.board.mini td b{display:block;font-weight:650}
+.sub2{display:block;color:var(--muted);font-size:12px}
+
 /* ---- detail dialog ---- */
-dialog.detail{width:min(560px,94vw);max-height:88vh;margin:auto;padding:0;border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--panel);color:var(--ink);overflow:auto}
+/* ---- detail dialog: sized for an element screenshot, so the box itself
+   must be 800-1440px on both sides. Width 920px; no max-height and no
+   inner scroll, so the element grows to its full content height. ---- */
+dialog.detail{width:min(920px,94vw);max-height:none;margin:auto;padding:0;border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--panel);color:var(--ink)}
 dialog.detail::backdrop{background:rgba(2,6,4,.72)}
-.detail-inner{padding:22px;display:grid;gap:20px}
+.detail-inner{padding:16px;display:grid;gap:12px}
 .detail-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
 .rank-tag{font-family:var(--num);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--signal)}
-.detail-top h2{margin-top:6px;font-size:24px}
-.detail-top .sub{color:var(--muted);font-size:13px;margin-top:6px;overflow-wrap:anywhere}
+.detail-top h2{margin-top:6px;font-size:22px}
+.detail-top .sub{color:var(--muted);font-size:13px;margin-top:4px;overflow-wrap:anywhere}
 .close-btn{flex:none;width:36px;height:36px;border:1px solid var(--line);border-radius:8px;background:var(--canvas-2);color:var(--ink);font-size:16px;line-height:1}
-.detail-sec{border-top:1px solid var(--line);padding-top:16px;display:grid;gap:12px}
-.detail-sec h3{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.detail-sec{border-top:1px solid var(--line);padding-top:10px;display:grid;gap:8px}
+.detail-sec h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.key-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.key-stats .stat{padding:8px 10px}
+.key-stats .stat b{font-size:15px}
+.risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.risk-cell{display:flex;justify-content:space-between;gap:8px;border:1px solid var(--line-soft);border-radius:8px;padding:6px 9px;font-size:12px;color:var(--muted)}
+.risk-cell b{font-family:var(--num);font-weight:600;color:var(--ink);white-space:nowrap}
 .equation{display:grid;gap:2px;font-size:14px}
-.equation .row{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px dashed var(--line-soft)}
+.equation .row{display:flex;justify-content:space-between;gap:16px;padding:5px 0;border-bottom:1px dashed var(--line-soft)}
 .equation .row:last-child{border-bottom:0}
 .equation .row span{color:var(--muted)}
 .equation .row b{font-family:var(--num);font-weight:600;text-align:right}
 .equation .row.total b{color:var(--signal);font-size:16px}
 .equation .row.total span{color:var(--ink);font-weight:700}
-.check{font-family:var(--num);font-size:12px;line-height:1.6;padding:10px 12px;border-radius:var(--radius);border:1px solid var(--line)}
+.check{font-family:var(--num);font-size:11px;line-height:1.6;padding:6px 10px;border-radius:var(--radius);border:1px solid var(--line)}
 .check.ok{color:var(--signal);border-color:var(--signal-dim);background:rgba(46,230,168,.07)}
 .check.warn{color:var(--amber);border-color:#6b5518;background:rgba(245,185,66,.07)}
 .check.na{color:var(--muted)}
-.farm{margin:0;padding-left:22px;display:grid;gap:12px;counter-reset:step}
-.farm li{padding-left:6px}
+.farm{margin:0;padding-left:22px;display:grid;gap:5px;counter-reset:step;font-size:12.5px;line-height:1.45}
+.farm li{padding-left:4px}
 .farm li::marker{color:var(--signal);font-family:var(--num);font-weight:700}
-.farm b{display:block;font-weight:600}
+.farm b{display:inline;font-weight:600}
 .farm .cost{color:var(--muted);font-size:12px;font-family:var(--num)}
 .risk{font-size:13px;color:var(--muted);border-left:3px solid var(--red);padding:2px 0 2px 14px}
 .risk b{color:var(--red)}
@@ -169,6 +219,10 @@ dialog.detail::backdrop{background:rgba(2,6,4,.72)}
   .wrap{padding:20px 14px 40px}
   .lede{grid-template-columns:1fr;gap:18px}
   .stats{grid-template-columns:1fr 1fr}
+  .pf-stats{grid-template-columns:1fr 1fr}
+  .key-stats{grid-template-columns:1fr 1fr}
+  .risk-grid{grid-template-columns:1fr 1fr}
+  .live-grid{grid-template-columns:1fr}
   .field input{min-width:0;width:100%}
   .field{flex:1 1 100%}
   .shown{margin-left:0}
